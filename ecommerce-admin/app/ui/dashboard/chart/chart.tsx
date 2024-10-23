@@ -1,78 +1,107 @@
-"use client"
-import styles from "./chart.module.css"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+'use client'
+
+import { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import * as React from "react"
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const Chart = () => {
-    const data = [
-        {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
-        },
-        {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
-    return(
-        <div className={styles.container}>
-            <h2 className={styles.title}>Weekly Progress</h2>
-            <ResponsiveContainer width="100%" height="90%">
-                <LineChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip contentStyle={{background: "#151c2c", border: "none"} }/>
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
-    );
-}
+  const [year, setYear] = useState(""); // State for selected year
+  interface SalesData {
+    name: string;
+    pv: number;
+  }
+
+  const [salesData, setSalesData] = useState<SalesData[]>([]); // State for sales data
+
+  const years = [2021, 2022, 2023, 2024]; // Sample year options
+
+  // Fetch sales data when year changes
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!year) return; // Do nothing if no year is selected
+
+      try {
+        const response = await fetch(`/api/generatequarterlysalesreport?year=${year}`);
+        const data = await response.json();
+
+        if (data) {
+          // Map the response to fit the chart data format
+          const chartData = [
+            { name: 'Q1', pv: data.sales1[0]?.quarterly_sales || 0 },
+            { name: 'Q2', pv: data.sales2[0]?.quarterly_sales || 0 },
+            { name: 'Q3', pv: data.sales3[0]?.quarterly_sales || 0 },
+            { name: 'Q4', pv: data.sales4[0]?.quarterly_sales || 0 },
+          ];
+          setSalesData(chartData);
+        }
+      } catch (error) {
+        console.error("Error fetching sales data:", error);
+      }                    
+    };
+
+    fetchData();
+  }, [year]); // Re-run when 'year' changes
+
+  return (
+    <div className="p-5">
+      <h1 className="text-2xl font-bold mb-4 ">Quarterly Sales Report</h1>
+
+      {/* Year Dropdown */}
+      <div className="mb-6 w-56   mt-16 ">
+      <Select onValueChange={(value)=>setYear(value)}>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruitsssss</SelectLabel>
+          {years.map((y,key) => (
+           
+
+            <SelectItem key={key} value={y.toString()}> {y}   </SelectItem>
+          ))}
+          
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+      </div>
+      
+      {/* Chart */}
+      {salesData.length > 0 && (
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart
+            width={500}
+            height={300}
+            data={salesData}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="4 4" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="pv" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+      )}
+    </div>
+  );
+};
 
 export default Chart;
