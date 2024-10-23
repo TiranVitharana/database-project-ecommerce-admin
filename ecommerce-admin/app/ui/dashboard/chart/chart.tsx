@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select"
 
 const Chart = () => {
-  const [year, setYear] = useState(""); // State for selected year
+  const [year, setYear] = useState("2024"); // Set initial year to 2024
   interface SalesData {
     name: string;
     pv: number;
@@ -54,27 +54,23 @@ const Chart = () => {
   }, [year]); // Re-run when 'year' changes
 
   return (
-    <div className="p-5">
-      <h1 className="text-2xl font-bold mb-4 ">Quarterly Sales Report</h1>
+    <div className="">
+      <h1 className="text-4xl font-bold mb-2 ">Quarterly Sales Report</h1>
 
       {/* Year Dropdown */}
-      <div className="mb-6 w-56   mt-16 ">
-      <Select onValueChange={(value)=>setYear(value)}>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a fruit" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Fruitsssss</SelectLabel>
-          {years.map((y,key) => (
-           
-
-            <SelectItem key={key} value={y.toString()}> {y}   </SelectItem>
-          ))}
-          
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+      <div className="mb-6 w-56 mt-16">
+        <Select onValueChange={(value) => setYear(value)} defaultValue={"2024"}>
+          <SelectTrigger className="w-[180px] items-center ">
+            <SelectValue placeholder="Select a year" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {years.map((y, key) => (
+                <SelectItem key={key} value={y.toString()}> {y} </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
       
       {/* Chart */}
