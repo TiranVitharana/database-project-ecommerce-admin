@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { useState, useEffect } from 'react';
@@ -10,7 +9,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -54,24 +52,28 @@ const Chart = () => {
   }, [year]); // Re-run when 'year' changes
 
   return (
-    <div className="">
-      <h1 className="text-4xl font-bold mb-2 ">Quarterly Sales Report</h1>
+    <div className="flex flex-col">
+  <h1 className="text-4xl font-bold mb-2">Quarterly Sales Report</h1>
 
-      {/* Year Dropdown */}
-      <div className="mb-6 w-56 mt-16">
-        <Select onValueChange={(value) => setYear(value)} defaultValue={"2024"}>
-          <SelectTrigger className="w-[180px] items-center ">
-            <SelectValue placeholder="Select a year" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {years.map((y, key) => (
-                <SelectItem key={key} value={y.toString()}> {y} </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
+  {/* Year Dropdown */}
+  <div className="flex items-center justify-center mb-6 mt-6">
+    <div className="w-56">
+      <Select onValueChange={(value) => setYear(value)} defaultValue={"2024"}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a year" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {years.map((y, key) => (
+              <SelectItem key={key} value={y.toString()}> {y} </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
+
+
       
       {/* Chart */}
       {salesData.length > 0 && (

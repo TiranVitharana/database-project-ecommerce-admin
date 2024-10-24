@@ -4,6 +4,7 @@ import Transactions from "../ui/dashboard/transactions/transactions";
 import Card1 from "../ui/dashboard/card1/card1";
 import Card2 from "../ui/dashboard/card2/card2";
 import Card3 from "../ui/dashboard/card3/card3";
+import PWMO_Chart from "../ui/dashboard/pwmo_chart/chart";
 import "../ui/globals.css";
 import Rightbar from "@/app/ui/dashboard/rightbar/rightbar";
 
@@ -17,6 +18,7 @@ const DashBoard = () => {
                 <Card3/>
             </div>
             <Chart/>
+            <PWMO_Chart/>
             <Transactions/>
         </div>
         <div className={styles.side}>
