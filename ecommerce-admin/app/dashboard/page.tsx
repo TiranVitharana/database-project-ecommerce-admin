@@ -9,6 +9,7 @@ import Card3 from "../ui/dashboard/card3/card3";
 
 import PWMO_Chart from "../ui/dashboard/pwmo_chart/chart";
 import ProductTrend from "../ui/dashboard/producttrend_chart/chart";
+import CustomerOrders from "../ui/dashboard/orderreport/page";
 import "../ui/globals.css";
 import Rightbar from "@/app/ui/dashboard/rightbar/rightbar";
 
@@ -25,6 +26,8 @@ const DashBoard = () => {
             <PWMO_Chart/>
             <Transactions/>
             <ProductTrend/>
+
+            <CustomerOrders/>
         </div>
         <div className={styles.side}>
             <div className={styles.side}>

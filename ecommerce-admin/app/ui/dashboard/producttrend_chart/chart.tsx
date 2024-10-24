@@ -56,7 +56,7 @@ const ProductTrend = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h1 className="text-4xl font-bold mb-12 mt-10">Product trends over time</h1>
   <h3 className="text-2xl mb-12 mt-10">
     {selectedProduct ? (
@@ -66,16 +66,16 @@ const ProductTrend = () => {
     )}
   </h3>
       {/* Search Bar */}
-      <div className="relative border border-e-red-100">
+      <div className="   ">
         <input
           type="text"
-          className="bg-[#151c2c] rounded-lg p-2 w-full text-white"
+          className="bg-[#151c2c] rounded-lg p-2 w-full border border-blue-500 text-white"
           placeholder="Search product..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {suggestions.length > 0 && (
-          <ul className="absolute z-10 bg-white border border-gray-300 w-full mt-1 max-h-48 overflow-y-auto">
+          <ul className="absolute z-10 bg-white border border-[#151c2c] w-full mt-1 max-h-48 overflow-y-auto">
             {suggestions.map((product: { ProductTitle: string }, index) => (
               <li
                 key={index}
@@ -106,7 +106,8 @@ const ProductTrend = () => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="clicks" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="clicks" stroke="#8884d8" strokeWidth={4} activeDot={{ r: 8 }} />
+
           </LineChart>
         </ResponsiveContainer>
       )}

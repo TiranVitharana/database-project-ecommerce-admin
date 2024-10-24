@@ -17,7 +17,7 @@ const Chart = () => {
   const [year, setYear] = useState("2024"); // Set initial year to 2024
   interface SalesData {
     name: string;
-    pv: number;
+    TotalSales: number;
   }
 
   const [salesData, setSalesData] = useState<SalesData[]>([]); // State for sales data
@@ -36,12 +36,12 @@ const Chart = () => {
         if (data) {
           // Map the response to fit the chart data format
           const chartData = [
-            { name: 'Q1', pv: data.sales1[0]?.quarterly_sales || 0 },
-            { name: 'Q2', pv: data.sales2[0]?.quarterly_sales || 0 },
-            { name: 'Q3', pv: data.sales3[0]?.quarterly_sales || 0 },
-            { name: 'Q4', pv: data.sales4[0]?.quarterly_sales || 0 },
+            { name: 'Q1', TotalSales: data.sales1[0]?.quarterly_sales || 0 },
+            { name: 'Q2', TotalSales: data.sales2[0]?.quarterly_sales || 0 },
+            { name: 'Q3', TotalSales: data.sales3[0]?.quarterly_sales || 0 },
+            { name: 'Q4', TotalSales: data.sales4[0]?.quarterly_sales || 0 },
           ];
-          setSalesData(chartData);
+          setSalesData(chartData as SalesData[]);
         }
       } catch (error) {
         console.error("Error fetching sales data:", error);
@@ -54,6 +54,7 @@ const Chart = () => {
   return (
     <div className="flex flex-col">
   <h1 className="text-4xl font-bold mb-12 mt-10">Quarterly Sales Report</h1>
+  <h3 className="text-2xl  mb-12 mt-10">Showing quarterly sales for the year {year}</h3>
 
   {/* Year Dropdown */}
   <div className="flex items-center justify-center mb-6 mt-6">
@@ -77,27 +78,28 @@ const Chart = () => {
       
       {/* Chart */}
       {salesData.length > 0 && (
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            width={500}
-            height={300}
-            data={salesData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="4 4" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-          </BarChart>
-        </ResponsiveContainer>
-      )}
+  <ResponsiveContainer width="100%" height={300}>
+    <BarChart
+      width={500}
+      height={300}
+      data={salesData}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="4 4" />
+      <XAxis dataKey="name"  />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="TotalSales" fill="#8884d8" />
+    </BarChart>
+  </ResponsiveContainer>
+)}
+
     </div>
   );
 };
