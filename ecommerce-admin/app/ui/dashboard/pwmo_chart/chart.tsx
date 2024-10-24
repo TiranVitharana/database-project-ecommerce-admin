@@ -58,7 +58,7 @@ const PWMO_Chart = () => {
   return (
     <div className="chart-container">
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-2">Sales with Most Orders</h1>
+      <h1 className="text-4xl font-bold mb-12 mt-10">Sales with Most Orders</h1>
 
       {/* Date Pickers */}
       <div className="flex justify-center mb-4">

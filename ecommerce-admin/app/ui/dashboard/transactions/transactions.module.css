@@ -41,9 +41,12 @@
 }
 
 .done{
-    background-color: #afd6ee75;
+    background-color: #01ff7775;
 }
 
 .cancelled{
-    background-color: #f7737375;
+    background-color: #ff000075;
+}
+.shipped{
+    background-color: #9b7a0075;
 }

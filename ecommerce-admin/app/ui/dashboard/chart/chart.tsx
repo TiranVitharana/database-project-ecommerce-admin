@@ -53,7 +53,7 @@ const Chart = () => {
 
   return (
     <div className="flex flex-col">
-  <h1 className="text-4xl font-bold mb-2">Quarterly Sales Report</h1>
+  <h1 className="text-4xl font-bold mb-12 mt-10">Quarterly Sales Report</h1>
 
   {/* Year Dropdown */}
   <div className="flex items-center justify-center mb-6 mt-6">

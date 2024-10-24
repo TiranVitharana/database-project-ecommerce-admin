@@ -1,10 +1,14 @@
+'use client'
+
 import styles from "../ui/dashboard/dashboard.module.css"
 import Chart from "../ui/dashboard/chart/chart";
 import Transactions from "../ui/dashboard/transactions/transactions";
 import Card1 from "../ui/dashboard/card1/card1";
 import Card2 from "../ui/dashboard/card2/card2";
 import Card3 from "../ui/dashboard/card3/card3";
+
 import PWMO_Chart from "../ui/dashboard/pwmo_chart/chart";
+import ProductTrend from "../ui/dashboard/producttrend_chart/chart";
 import "../ui/globals.css";
 import Rightbar from "@/app/ui/dashboard/rightbar/rightbar";
 
@@ -20,6 +24,7 @@ const DashBoard = () => {
             <Chart/>
             <PWMO_Chart/>
             <Transactions/>
+            <ProductTrend/>
         </div>
         <div className={styles.side}>
             <div className={styles.side}>
