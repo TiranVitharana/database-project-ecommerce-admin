@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductsPage from '@/app/ui/dashboard/products/product';
+import GET from '@/app/ui/dashboard/transactions/transactions';
 
 
 const DashBoard = () => {
     return (
         <div >
-          <ProductsPage/>
+          <GET/>
         </div>
     );
   }

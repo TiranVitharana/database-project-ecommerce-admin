@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductsPage from '@/app/ui/dashboard/products/product';
+import Chart from '@/app/ui/dashboard/chart/chart';
 
 
 const DashBoard = () => {
     return (
         <div >
-          <ProductsPage/>
+          <Chart/>
         </div>
     );
   }

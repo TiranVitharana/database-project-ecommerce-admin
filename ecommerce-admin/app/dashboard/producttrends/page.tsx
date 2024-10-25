@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductsPage from '@/app/ui/dashboard/products/product';
+import ProductTrend from '@/app/ui/dashboard/producttrend_chart/chart';
 
 
 const DashBoard = () => {
     return (
         <div >
-          <ProductsPage/>
+          <ProductTrend/>
         </div>
     );
   }

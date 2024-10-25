@@ -1,6 +1,5 @@
 'use client';
 
-import styles from './card.module.css';
 import { MdSupervisedUserCircle } from 'react-icons/md';
 import React, { useEffect, useState } from 'react';
 
@@ -9,48 +8,46 @@ interface Customer {
 }
 
 const Card1 = () => {
-  const [customerCount, setCustomerCount] = useState<Customer[]>([]); // Expect an array of customers
+  const [customerCount, setCustomerCount] = useState<Customer[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch data from the API
     const fetchCustomerCount = async () => {
       try {
-        const response = await fetch ('/api/getcustomercount'); // Ensure the API URL is correct
+        const response = await fetch('/api/getcustomercount');
 
         if (!response.ok) {
-          const errorMessage = await response.text(); // Read as text for better error reporting
+          const errorMessage = await response.text();
           throw new Error(`API error: ${errorMessage}`);
         }
 
         const data = await response.json();
-
-        setCustomerCount(data); // Assuming 'data' is an array of objects with 'count' fields
+        setCustomerCount(data);
         console.log("Customer count fetched:", data);
       } catch (err) {
         setError('Network error: ' + (err as Error).message);
       }
     };
 
-    fetchCustomerCount(); // Trigger the API call when component mounts
+    fetchCustomerCount();
   }, []);
 
   return (
-    <div className={styles.container}>
-      <MdSupervisedUserCircle size={24} />
-      <div className={styles.texts}>
-        <span className={styles.title}>Total Customers</span>
-        <span className={styles.number}>
+    <div className="flex bg-[#182237] hover:bg-gray-700 p-5 rounded-lg gap-5 w-full">
+      <MdSupervisedUserCircle size={24} className="text-white" />
+      <div className="flex flex-col gap-5">
+        <span className="text-2xl font-semibold text-white">Total Customers</span>
+        <span className="text-2xl font-medium text-white">
           {customerCount.length > 0 ? (
             customerCount.map((c, key) => (
-              <h1 key={key}>{c.count}</h1> // Display count for each customer object
+              <h1 key={key}>{c.count}</h1>
             ))
           ) : (
             'Loading...'
           )}
         </span>
       </div>
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className="text-red-500 mt-2">{error}</div>}
     </div>
   );
 };

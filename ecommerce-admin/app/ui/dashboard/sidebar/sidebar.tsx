@@ -13,18 +13,18 @@ const menuItems = [
                 icon: <MdDashboard/>,
             },
             {
-                title: "Users",
+                title: "Customers",
                 path: "/dashboard/users",
                 icon: <MdDashboard/>,
             },
             {
                 title: "Products",
-                path: "/products",
+                path: "/dashboard/products",
                 icon: <MdDashboard/>,
             },
             {
                 title: "Transactions",
-                path: "/transactions",
+                path: "/dashboard/transactions",
                 icon: <MdDashboard/>,
             }
         ]
@@ -33,18 +33,18 @@ const menuItems = [
         title: "Analytics",
         list: [
             {
-                title: "Revenue",
-                path: "/dashboard/revenue",
-                icon: <MdDashboard/>,
-            },
-            {
-                title: "Reports",
+                title: "Customer Order Reports",
                 path: "/dashboard/reports",
                 icon: <MdDashboard/>,
             },
             {
-                title: "Teams",
-                path: "/dashboard/teams",
+                title: "Quarterly Sales Reports",
+                path: "/dashboard/quarterlysalesreport",
+                icon: <MdDashboard/>,
+            },
+            {
+                title: "Product Trends",
+                path: "/dashboard/producttrends",
                 icon: <MdDashboard/>,
             },
         ]
@@ -52,23 +52,10 @@ const menuItems = [
     {
         title: "User",
         list: [
-            {
-                title: "Settings",
-                path: "/dashboard/settings",
-                icon: <MdDashboard/>,
-            },
-            {
-                title: "Help",
-                path: "/dashboard/help",
-                icon: <MdDashboard/>,
-            },
-            {
-                title: "Teams",
-                path: "/dashboard/teams",
-                icon: <MdDashboard/>,
-            },
+            
         ]
     },
+   
 ]
 
 

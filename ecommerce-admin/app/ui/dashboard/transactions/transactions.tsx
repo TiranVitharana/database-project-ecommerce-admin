@@ -46,7 +46,7 @@ const Transactions = () => {
   }
 
   return (
-    <><h1 className="text-4xl font-bold mb-12">Latest Transactions</h1><div className={styles.container}>
+    <><h1 className="text-4xl font-bold mb-12 mt-12">Latest Transactions</h1><div className={styles.container}>
           <table className={styles.table}>
               <thead>
                   <tr>
