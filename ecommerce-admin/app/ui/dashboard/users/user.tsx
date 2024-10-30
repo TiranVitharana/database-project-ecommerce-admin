@@ -42,7 +42,7 @@ const UsersPage = () => {
     } else {
       const lowercasedTerm = term.toLowerCase();
       const filtered = users.filter(user =>
-          user.CustomerID.toString().includes(lowercasedTerm) || 
+          user.CustomerID.toString().includes(lowercasedTerm) ||
           user.CustomerName.toLowerCase().includes(lowercasedTerm) ||
           user.Email.toLowerCase().includes(lowercasedTerm)
       );

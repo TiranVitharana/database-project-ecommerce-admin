@@ -1,23 +1,18 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react';
-
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('');
+    const router = useRouter();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  }
-  return (
-    <div className="div">
-      <input 
-      type="text" 
-      value={searchTerm} 
-      onChange={handleInputChange} 
-      placeholder="Search..." 
-      />
-      <h1>{searchTerm}</h1>
-    </div>
-  );
+    useEffect(() => {
+        // Redirect to /dashboard on each visit
+        router.push('/dashboard');
+    }, [router]);
+
+    return (
+        <div className="div">
+        </div>
+    );
 }
