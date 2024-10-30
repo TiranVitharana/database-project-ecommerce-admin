@@ -36,12 +36,12 @@ const menuConfig: { [key in UserRole]: MenuCategory[] } = {
                 },
                 {
                     title: "Products",
-                    path: "/dashboard/products",
+                    path: "/dashboard/inventory/products",
                     icon: <MdInventory />,
                 },
                 {
-                    title: "Transactions",
-                    path: "/dashboard/transactions",
+                    title: "Orders",
+                    path: "/dashboard/orders",
                     icon: <MdBarChart />,
                 },
             ],
@@ -50,32 +50,32 @@ const menuConfig: { [key in UserRole]: MenuCategory[] } = {
             title: "Analytics",
             list: [
                 {
-                    title: "Revenue",
-                    path: "/dashboard/quarterlysalesreport",
+                    title: "Customer-Order",
+                    path: "/dashboard/analytics/customer-order",
                     icon: <MdBarChart />,
                 },
-                {
-                    title: "Reports",
-                    path: "/dashboard/reports",
-                    icon: <MdBarChart />,
-                },
+                // {
+                //     title: "Reports",
+                //     path: "/dashboard/analytics",
+                //     icon: <MdBarChart />,
+                // },
             ],
         },
-        {
-            title: "User",
-            list: [
-                {
-                    title: "Settings",
-                    path: "/dashboard/settings",
-                    icon: <MdSettings />,
-                },
-                {
-                    title: "Help",
-                    path: "/dashboard/help",
-                    icon: <MdHelpCenter />,
-                },
-            ],
-        },
+        // {
+        //     title: "User",
+        //     list: [
+        //         {
+        //             title: "Settings",
+        //             path: "/dashboard/settings",
+        //             icon: <MdSettings />,
+        //         },
+        //         {
+        //             title: "Help",
+        //             path: "/dashboard/help",
+        //             icon: <MdHelpCenter />,
+        //         },
+        //     ],
+        // },
     ],
     "Inventory Manager": [
         {
