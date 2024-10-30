@@ -47,6 +47,11 @@ const menuItems = [
                 path: "/dashboard/producttrends",
                 icon: <MdDashboard/>,
             },
+            {
+                title: "Orders",
+                path: "/dashboard/orders",
+                icon: <MdDashboard/>,
+            }
         ]
     },
     {

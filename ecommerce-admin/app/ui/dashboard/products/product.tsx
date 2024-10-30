@@ -25,7 +25,7 @@ const ProductsPage = () => {
         const data = await response.json();
        
         setProducts(data || []);
-        console.log('jjjjjjjjjjjjjjjj',products);
+        
         setFilteredProducts(data || []);
       } catch (error) {
         console.error("Failed to fetch products:", error);
