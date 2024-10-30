@@ -58,6 +58,7 @@ export default function LoginPage() {
 
             if (result?.error) {
                 setLoading(false);
+                // Set the error message returned from NextAuth
                 setError(result.error);
             } else {
                 // Fetch the user's role after successful authentication

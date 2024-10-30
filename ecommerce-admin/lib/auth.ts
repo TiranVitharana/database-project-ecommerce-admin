@@ -1,7 +1,7 @@
-// auth.ts
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { createDBConnection } from "@/lib/db";
+import bcrypt from "bcrypt";
 
 export const {
     handlers: { GET, POST },
@@ -38,8 +38,9 @@ export const {
 
                     const user = rows[0];
 
-                    //TODO: Implement proper password hashing
-                    if (credentials.password !== user.Password) {
+                    // Verify password using bcrypt
+                    const isPasswordValid = await bcrypt.compare(credentials.password, user.Password);
+                    if (!isPasswordValid) {
                         throw new Error("Invalid password");
                     }
 
