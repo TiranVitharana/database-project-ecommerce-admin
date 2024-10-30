@@ -36,17 +36,20 @@ const UsersPage = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setCurrentPage(1); // Reset to the first page on a new search
+
     if (term === "") {
       setFilteredUsers(users);
     } else {
       const lowercasedTerm = term.toLowerCase();
       const filtered = users.filter(user =>
-        user.CustomerName.toLowerCase().includes(lowercasedTerm) ||
-        user.Email.toLowerCase().includes(lowercasedTerm)
+          user.CustomerID.toString().includes(lowercasedTerm) || 
+          user.CustomerName.toLowerCase().includes(lowercasedTerm) ||
+          user.Email.toLowerCase().includes(lowercasedTerm)
       );
       setFilteredUsers(filtered);
     }
   };
+
 
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
