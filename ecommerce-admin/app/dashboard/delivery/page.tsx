@@ -1,9 +1,13 @@
-const Delivery = () => {
-  return(
-      <div>
-          Delivery
-      </div>
+import React from 'react';
+import OrdersPage from '@/app/ui/dashboard/orders/order';
+
+
+const DashBoard = () => {
+    return (
+        <div >
+            <OrdersPage/>
+        </div>
     );
 }
 
-export default Delivery;
+export default DashBoard;

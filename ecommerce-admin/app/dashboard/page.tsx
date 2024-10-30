@@ -25,11 +25,12 @@ const DashBoard = () => {
             </div>
 
             <div className="flex flex-col-2 gap-5 justify-between">
-                <div className="w-[50%]"><Transactions/></div>
+                <div className="w-[50%]"><PWMO_Table/></div>
                 <div className="w-[50%]"><ProductTrend/></div>
             </div>
             <div className="flex flex-col-2 gap-5 justify-between">
-                <div className="w-[50%]"><PWMO_Table/></div>
+
+                <div className="w-[100%]"><Transactions/></div>
 
             </div>
         </div>

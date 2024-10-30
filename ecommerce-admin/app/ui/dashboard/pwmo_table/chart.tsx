@@ -52,11 +52,11 @@ const PWMO_Table = () => {
 
   return (
         <div className="flex flex-col bg-backgroundSoft p-5 rounded-lg">
-          <h1 className="text-2xl font-semibold text-white mb-4">Product Sales</h1>
+          <h1 className="text-2xl font-semibold text-white mt-10 mb-4">Product Sales</h1>
 
           {/* Date Range Picker */}
-          <div className="flex justify-center mb-4">
-            <Space direction="vertical" style={{ width: '30%' }}>
+          <div className="flex justify-center mt-4 mb-4">
+            <Space direction="vertical" style={{ width: '60%' }}>
               <RangePicker
                   value={dateRange}
                   onChange={(dates) => setDateRange(dates as [Dayjs, Dayjs] | [null, null])}
@@ -94,12 +94,15 @@ const PWMO_Table = () => {
           </div>
 
           {/* Pagination Component */}
-          <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={filteredProducts.length}
-              paginate={paginate}
-              currentPage={currentPage}
-          />
+          <div className="mb-6">
+            <Pagination
+                itemsPerPage={itemsPerPage}
+                totalItems={filteredProducts.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
+          </div>
+
         </div>
   );
 };

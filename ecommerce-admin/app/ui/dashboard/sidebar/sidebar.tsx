@@ -83,14 +83,14 @@ const menuConfig: { [key in UserRole]: MenuCategory[] } = {
             list: [
                 {
                     title: "Products",
-                    path: "/dashboard/inventory",
-                    icon: <MdInventory />,
-                },
-                {
-                    title: "Products",
                     path: "/dashboard/inventory/products",
                     icon: <MdInventory />,
                 },
+                // {
+                //     title: "Products",
+                //     path: "/dashboard/inventory/products",
+                //     icon: <MdInventory />,
+                // },
                 {
                     title: "Stock Management",
                     path: "/dashboard/inventory/stock",

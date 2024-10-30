@@ -78,7 +78,7 @@ const Chart = () => {
             </div>
           </div>
         </div>
-
+        <div className="mb-4">
         {/* Conditionally render either the loading skeleton or the chart */}
         {loading ? (
             <ChartSkeleton />
@@ -106,6 +106,7 @@ const Chart = () => {
         )}
 
         {error && <div className="text-red-500 mt-4">{error}</div>}
+        </div>
       </div>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import { MdSupervisedUserCircle } from 'react-icons/md';
+import { FaUserFriends } from 'react-icons/fa'
 import React, { useEffect, useState } from 'react';
 
 interface Customer {
@@ -37,7 +38,7 @@ const Card1 = () => {
 
   return (
       <div className="flex bg-backgroundSoft p-5 rounded-lg gap-5 w-full hover:bg-[#2e374a]">
-        <MdSupervisedUserCircle size={24} />
+        <FaUserFriends size={24} />
         <div className="flex flex-col gap-5">
           <span className="font-semibold">Total Users</span>
           <span className="text-2xl font-medium">

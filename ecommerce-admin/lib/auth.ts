@@ -33,7 +33,7 @@ export const {
                     await connection.end();
 
                     if (rows.length === 0) {
-                        throw new Error("No user found");
+                        throw new Error("No user found with this email");
                     }
 
                     const user = rows[0];
@@ -41,7 +41,7 @@ export const {
                     // Verify password using bcrypt
                     const isPasswordValid = await bcrypt.compare(credentials.password, user.Password);
                     if (!isPasswordValid) {
-                        throw new Error("Invalid password");
+                        throw new Error("Incorrect password");
                     }
 
                     return {
@@ -75,6 +75,6 @@ export const {
     },
     pages: {
         signIn: "/login",
-        error: "/unauthorized"
+        error: "/login?error=Credentials" // Redirect to the login page with a custom error parameter
     }
 });
