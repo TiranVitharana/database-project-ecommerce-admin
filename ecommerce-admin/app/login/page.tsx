@@ -18,17 +18,17 @@ export default function LoginPage() {
 
     const handleRoleBasedRedirect = (role: string) => {
         switch (role) {
-            case 'Admin':
-                router.push('/dashboard');
+            case "Admin":
+                router.push("/dashboard");
                 break;
-            case 'Delivery Person':
-                router.push('/dashboard/delivery');
+            case "Delivery Person":
+                router.push("/dashboard/delivery");
                 break;
-            case 'Inventory Manager':
-                router.push('/dashboard/inventory');
+            case "Inventory Manager":
+                router.push("/dashboard/inventory");
                 break;
             default:
-                router.push('/dashboard');
+                router.push("/dashboard");
         }
     };
 
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
         setLoading(true);
 
-        // Add a slight delay to show the animation
+        // Slight delay for animation effect
         setTimeout(async () => {
             const result = await signIn("credentials", {
                 redirect: false,
@@ -58,18 +58,17 @@ export default function LoginPage() {
 
             if (result?.error) {
                 setLoading(false);
-                setError(result.error);
+                setError("Invalid email or password");
             } else {
                 // Fetch the user's role after successful authentication
                 try {
-                    const response = await fetch('/api/auth/session');
+                    const response = await fetch("/api/auth/session");
                     const session = await response.json();
 
-                    if (session?.user.role) {
+                    if (session?.user?.role) {
                         handleRoleBasedRedirect(session.user.role);
                     } else {
-                        // Fallback to default dashboard if role is not available
-                        router.push('/dashboard');
+                        router.push("/dashboard"); // Fallback if role is missing
                     }
                 } catch (error) {
                     setError("Error fetching user role");
@@ -127,7 +126,7 @@ export default function LoginPage() {
                         <div className="w-full bg-gray-200 rounded-full h-2.5">
                             <div
                                 className="bg-blue-600 h-2.5 rounded-full animate-pulse"
-                                style={{ width: '75%' }}
+                                style={{ width: "75%" }}
                             ></div>
                         </div>
                     </div>

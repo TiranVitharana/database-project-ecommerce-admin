@@ -46,7 +46,8 @@ const Transactions = () => {
   }
 
   return (
-    <><h1 className="text-4xl font-bold mb-12 mt-12">Latest Transactions</h1><div className={styles.container}>
+    <div className="bg-backgroundSoft p-5 rounded-lg">
+        <h1 className="text-2xl font-bold mt-10">Latest Transactions</h1><div className={styles.container}>
           <table className={styles.table}>
               <thead>
                   <tr>
@@ -61,12 +62,6 @@ const Transactions = () => {
                       <tr key={index}>
                           <td>
                               <div className={styles.user}>
-                                  <Image
-                                      src="/user.png"
-                                      alt=""
-                                      width={40}
-                                      height={40}
-                                      className={styles.userImage} />
                                   {transaction.Name}
                               </div>
                           </td>
@@ -89,7 +84,8 @@ const Transactions = () => {
                   ))}
               </tbody>
           </table>
-      </div></>
+      </div>
+    </div>
   );
 };
 
