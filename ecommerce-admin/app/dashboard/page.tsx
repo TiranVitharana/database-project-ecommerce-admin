@@ -7,11 +7,12 @@ import Card1 from "../ui/dashboard/card1/card1";
 import Card2 from "../ui/dashboard/card2/card2";
 import Card3 from "../ui/dashboard/card3/card3";
 
-import PWMO_Chart from "../ui/dashboard/pwmo_chart/chart";
+import PWMO_Table from "../ui/dashboard/pwmo_table/chart";
 import ProductTrend from "../ui/dashboard/producttrend_chart/chart";
 import CustomerOrders from "../ui/dashboard/orderreport/page";
 import "../ui/globals.css";
 import OrdersPage from "../ui/dashboard/orders/order";
+import OrdersPieChart from "../ui/dashboard/piechart/chart";
 
 
 const DashBoard = () => {
@@ -24,12 +25,13 @@ const DashBoard = () => {
                 <Card3/>
             </div>
             <Chart/>
-            <PWMO_Chart/>
+            <PWMO_Table/>
             <Transactions/>
             <ProductTrend/>
 
             <CustomerOrders/>
             <OrdersPage/>
+            <OrdersPieChart/>
         </div>
         <div className={styles.side}>
             <div className={styles.side}>

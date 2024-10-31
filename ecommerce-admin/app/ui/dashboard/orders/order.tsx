@@ -1,7 +1,8 @@
 'use client'
+
 import { useEffect, useState } from "react";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select"; // Adjust this import based on your directory structure
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select";
 
 const OrdersPage = () => {
   interface Order {
@@ -21,16 +22,14 @@ const OrdersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState(""); // New state for status filter
+  const [statusFilter, setStatusFilter] = useState("All"); // Default to "All" for showing all orders initially
 
-  // Fetch orders data from the API
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await fetch('/api/getorders');
         const data = await response.json();
 
-        // Ensure that data.orders is an array
         const ordersArray = Array.isArray(data.orders) ? data.orders : [];
         setOrders(ordersArray);
         setFilteredOrders(ordersArray);
@@ -42,19 +41,17 @@ const OrdersPage = () => {
     fetchOrders();
   }, []);
 
- // Filter orders based on search term and status
-useEffect(() => {
-  const lowercasedTerm = searchTerm.toLowerCase();
-  const filtered = orders.filter(order => {
-    const matchesSearch = order.Email.toLowerCase().includes(lowercasedTerm) || 
-                          order.Status.toLowerCase().includes(lowercasedTerm);
-    const matchesStatus = statusFilter === "All" || order.Status.toLowerCase() === statusFilter.toLowerCase();
-    return matchesSearch && matchesStatus;
-  });
-  setFilteredOrders(filtered);
-}, [searchTerm, statusFilter, orders]);
-
-  
+  // Filter orders based on search term and status
+  useEffect(() => {
+    const lowercasedTerm = searchTerm.toLowerCase();
+    const filtered = orders.filter(order => {
+      const matchesSearch = order.Email.toLowerCase().includes(lowercasedTerm) || 
+                            order.Status.toLowerCase().includes(lowercasedTerm);
+      const matchesStatus = statusFilter === "All" || order.Status.toLowerCase() === statusFilter.toLowerCase();
+      return matchesSearch && matchesStatus;
+    });
+    setFilteredOrders(filtered);
+  }, [searchTerm, statusFilter, orders]);
 
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -81,24 +78,23 @@ useEffect(() => {
 
         {/* Status Filter Dropdown */}
         <div className="flex items-center justify-center mb-6 mt-6">
-  <div className="w-56">
-    <Select onValueChange={(value) => setStatusFilter(value)} defaultValue="All">
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select order status" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectItem value="All">All</SelectItem> {/* Use "All" instead of empty string */}
-          <SelectItem value="Processsing">Processsing</SelectItem>
-          <SelectItem value="Shipped">Shipped</SelectItem>
-          <SelectItem value="Completed">Completed</SelectItem>
-          <SelectItem value="Cancelled">Cancelled</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-  </div>
-</div>
-
+          <div className="w-56">
+            <Select onValueChange={(value) => setStatusFilter(value)} defaultValue="All">
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select order status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="All">All</SelectItem> {/* "All" shows all orders */}
+                  <SelectItem value="Processing">Processing</SelectItem>
+                  <SelectItem value="Shipped">Shipped</SelectItem>
+                  <SelectItem value="Completed">Completed</SelectItem>
+                  <SelectItem value="Cancelled">Cancelled</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         {/* Orders Table */}
         <div className="overflow-x-auto mt-4">

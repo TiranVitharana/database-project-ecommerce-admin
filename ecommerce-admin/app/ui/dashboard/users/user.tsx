@@ -36,11 +36,13 @@ const UsersPage = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setCurrentPage(1); // Reset to the first page on a new search
-    if (term === "") {
+
+    const lowercasedTerm = term.toLowerCase().trim();
+    if (lowercasedTerm === "") {
       setFilteredUsers(users);
     } else {
-      const lowercasedTerm = term.toLowerCase();
       const filtered = users.filter(user =>
+        user.CustomerID.toLowerCase().includes(lowercasedTerm) ||
         user.CustomerName.toLowerCase().includes(lowercasedTerm) ||
         user.Email.toLowerCase().includes(lowercasedTerm)
       );
@@ -67,7 +69,7 @@ const UsersPage = () => {
             value={searchTerm}
             onChange={(e) => handleSearchChange(e.target.value)}
             className="w-full p-3 rounded-lg bg-gray-800 text-white outline-none"
-            placeholder="Search users by name or email"
+            placeholder="Search users by Customer ID, name, or email"
           />
         </div>
 
